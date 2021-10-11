@@ -1,11 +1,20 @@
 import { connect } from "react-redux";
 import { useParams } from "react-router";
+import { actionCreators } from "../store";
 
-const Detail = ({ toDo }) => {
+const Detail = ({ toDo, onBtnClick, history }) => {
   return (
     <>
       <h1>{toDo?.text}</h1>
       <h5>Created at: {toDo?.id}</h5>
+      <button
+        onClick={() => {
+          onBtnClick();
+          history.push("/");
+        }}
+      >
+        delete
+      </button>
     </>
   );
 };
@@ -19,4 +28,11 @@ const mapStateToProps = (state, ownProps) => {
   return { toDo: state.find((toDo) => toDo.id === parseInt(id)) };
 };
 
-export default connect(mapStateToProps)(Detail);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onBtnClick: () =>
+      dispatch(actionCreators.deleteToDo(ownProps.match.params.id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);
