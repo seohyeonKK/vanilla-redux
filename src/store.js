@@ -5,11 +5,11 @@ const DELETE = "DELETE";
 
 // action creator
 const addToDo = (text) => {
-  return { type: ADD, text };
+  return { type: ADD, text: text };
 };
 
 const deleteToDo = (id) => {
-  return { type: DELETE, id };
+  return { type: DELETE, id: parseInt(id) };
 };
 
 const reducer = (state = [], action) => {
