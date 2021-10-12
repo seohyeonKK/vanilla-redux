@@ -30,8 +30,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onBtnClick: () =>
-      dispatch(actionCreators.deleteToDo(ownProps.match.params.id)),
+    onBtnClick: () => {
+      dispatch(actionCreators.deleteToDo(parseInt(ownProps.match.params.id)));
+    },
   };
 };
 
