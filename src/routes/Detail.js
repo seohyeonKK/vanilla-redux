@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { useParams } from "react-router";
-import { actionCreators } from "../store";
+import { actionCreators, remove } from "../store";
 
 const Detail = ({ toDo, onBtnClick, history }) => {
   return (
@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onBtnClick: () => {
-      dispatch(actionCreators.deleteToDo(parseInt(ownProps.match.params.id)));
+      dispatch(remove(parseInt(ownProps.match.params.id)));
     },
   };
 };
